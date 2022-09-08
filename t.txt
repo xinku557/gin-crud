@@ -1,0 +1,213 @@
+
+2022/09/06 11:57:39 /home/sheinko/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.048ms] [rows:-] SELECT DATABASE()
+
+2022/09/06 11:57:39 /home/sheinko/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.351ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'gincrud%' ORDER BY SCHEMA_NAME='gincrud' DESC,SCHEMA_NAME limit 1
+
+2022/09/06 11:57:39 /home/sheinko/Documents/GoLang/gin-crud/controllers/base.go:34
+[0.499ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'gincrud' AND table_name = 'users' AND table_type = 'BASE TABLE'
+
+2022/09/06 11:57:39 /home/sheinko/Documents/GoLang/gin-crud/controllers/base.go:34
+[121.692ms] [rows:0] CREATE TABLE `users` (`id` bigint unsigned AUTO_INCREMENT,`username` varchar(100) UNIQUE,`email` varchar(255) UNIQUE,`password` varchar(255),`type` bigint unsigned DEFAULT 1,`created_at` datetime(3) NULL,PRIMARY KEY (`id`))
+
+2022/09/06 11:57:39 /home/sheinko/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.404ms] [rows:-] SELECT DATABASE()
+
+2022/09/06 11:57:39 /home/sheinko/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[1.750ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'gincrud%' ORDER BY SCHEMA_NAME='gincrud' DESC,SCHEMA_NAME limit 1
+
+2022/09/06 11:57:39 /home/sheinko/Documents/GoLang/gin-crud/controllers/base.go:34
+[0.858ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'gincrud' AND table_name = 'categories' AND table_type = 'BASE TABLE'
+
+2022/09/06 11:57:39 /home/sheinko/Documents/GoLang/gin-crud/controllers/base.go:34
+[109.266ms] [rows:0] CREATE TABLE `categories` (`id` bigint unsigned AUTO_INCREMENT,`name` varchar(255),`created_at` datetime(3) NULL,`admin_id` bigint unsigned,PRIMARY KEY (`id`),CONSTRAINT `fk_users_categories` FOREIGN KEY (`admin_id`) REFERENCES `users`(`id`) ON DELETE CASCADE)
+
+2022/09/06 11:57:39 /home/sheinko/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.143ms] [rows:-] SELECT DATABASE()
+
+2022/09/06 11:57:39 /home/sheinko/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.507ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'gincrud%' ORDER BY SCHEMA_NAME='gincrud' DESC,SCHEMA_NAME limit 1
+
+2022/09/06 11:57:39 /home/sheinko/Documents/GoLang/gin-crud/controllers/base.go:34
+[0.608ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'gincrud' AND table_name = 'authors' AND table_type = 'BASE TABLE'
+
+2022/09/06 11:57:39 /home/sheinko/Documents/GoLang/gin-crud/controllers/base.go:34
+[101.098ms] [rows:0] CREATE TABLE `authors` (`id` bigint unsigned AUTO_INCREMENT,`name` varchar(255),`created_at` datetime(3) NULL,`admin_id` bigint unsigned,PRIMARY KEY (`id`),CONSTRAINT `fk_users_authors` FOREIGN KEY (`admin_id`) REFERENCES `users`(`id`) ON DELETE CASCADE)
+
+2022/09/06 11:57:39 /home/sheinko/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.121ms] [rows:-] SELECT DATABASE()
+
+2022/09/06 11:57:39 /home/sheinko/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.404ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'gincrud%' ORDER BY SCHEMA_NAME='gincrud' DESC,SCHEMA_NAME limit 1
+
+2022/09/06 11:57:39 /home/sheinko/Documents/GoLang/gin-crud/controllers/base.go:34
+[0.519ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'gincrud' AND table_name = 'books' AND table_type = 'BASE TABLE'
+
+2022/09/06 11:57:39 /home/sheinko/Documents/GoLang/gin-crud/controllers/base.go:34
+[138.539ms] [rows:0] CREATE TABLE `books` (`id` bigint unsigned AUTO_INCREMENT,`title` varchar(255),`description` text,`author_id` bigint unsigned,`admin_id` bigint unsigned,`category_id` bigint unsigned,`created_at` datetime(3) NULL,PRIMARY KEY (`id`),CONSTRAINT `fk_authors_books` FOREIGN KEY (`author_id`) REFERENCES `authors`(`id`) ON DELETE CASCADE,CONSTRAINT `fk_categories_books` FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE CASCADE,CONSTRAINT `fk_users_books` FOREIGN KEY (`admin_id`) REFERENCES `users`(`id`) ON DELETE CASCADE)
+
+2022/09/06 11:57:39 /home/sheinko/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.157ms] [rows:-] SELECT DATABASE()
+
+2022/09/06 11:57:39 /home/sheinko/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.568ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'gincrud%' ORDER BY SCHEMA_NAME='gincrud' DESC,SCHEMA_NAME limit 1
+
+2022/09/06 11:57:39 /home/sheinko/Documents/GoLang/gin-crud/controllers/base.go:34
+[0.737ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'gincrud' AND table_name = 'b_and_rs' AND table_type = 'BASE TABLE'
+
+2022/09/06 11:57:39 /home/sheinko/Documents/GoLang/gin-crud/controllers/base.go:34
+[141.751ms] [rows:0] CREATE TABLE `b_and_rs` (`id` bigint unsigned AUTO_INCREMENT,`user_id` bigint unsigned,`admin_id` bigint unsigned,`book_id` bigint unsigned,`status` bigint unsigned DEFAULT 1,`borrow_date` longtext,`return_date` longtext,`created_at` datetime(3) NULL,PRIMARY KEY (`id`),CONSTRAINT `fk_b_and_rs_book` FOREIGN KEY (`book_id`) REFERENCES `books`(`id`) ON DELETE CASCADE,CONSTRAINT `fk_b_and_rs_user` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,CONSTRAINT `fk_b_and_rs_admin` FOREIGN KEY (`admin_id`) REFERENCES `users`(`id`) ON DELETE CASCADE)
+
+2022/09/06 11:58:02 /home/sheinko/Documents/GoLang/gin-crud/services/auth_service.go:22
+[1.095ms] [rows:0] SELECT * FROM `users` WHERE email = 'fivek@gmail.com'
+
+2022/09/06 11:58:02 /home/sheinko/Documents/GoLang/gin-crud/services/auth_service.go:22
+[0.161ms] [rows:0] SELECT * FROM `users` WHERE username = 'fivek'
+
+2022/09/06 11:58:02 /home/sheinko/Documents/GoLang/gin-crud/services/auth_service.go:10
+[67.536ms] [rows:1] INSERT INTO `users` (`username`,`email`,`password`,`type`,`created_at`) VALUES ('fivek','fivek@gmail.com','$2a$10$xLKTO7eDh7mO/9h5cc9RgOFK4lfOG6HK8BDlKLmgyVavtcI/0lR.i',1,'2022-09-06 11:58:02.57')
+[GIN] 2022/09/06 - 11:58:02 | 201 |   69.304638ms |             ::1 | POST     "/api/v1/auth/register"
+
+2022/09/06 11:58:06 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:15
+[0.769ms] [rows:0] SELECT * FROM `authors`
+[GIN] 2022/09/06 - 11:58:06 | 200 |    1.073167ms |             ::1 | GET      "/api/v1/authors"
+
+2022/09/06 11:58:09 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:27
+[16.599ms] [rows:1] INSERT INTO `authors` (`name`,`created_at`,`admin_id`) VALUES ('Author 2','2022-09-06 11:58:09.716',1)
+[GIN] 2022/09/06 - 11:58:09 | 201 |   16.780042ms |             ::1 | POST     "/api/v1/authors"
+
+2022/09/06 11:58:16 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:27
+[76.456ms] [rows:1] INSERT INTO `authors` (`name`,`created_at`,`admin_id`) VALUES ('Author 1','2022-09-06 11:58:16.402',1)
+[GIN] 2022/09/06 - 11:58:16 | 201 |    77.02885ms |             ::1 | POST     "/api/v1/authors"
+
+2022/09/06 11:58:18 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:15
+[0.305ms] [rows:2] SELECT * FROM `authors`
+[GIN] 2022/09/06 - 11:58:18 | 200 |     378.423µs |             ::1 | GET      "/api/v1/authors"
+
+2022/09/06 11:58:25 /home/sheinko/Documents/GoLang/gin-crud/services/category_service.go:27
+[12.452ms] [rows:1] INSERT INTO `categories` (`name`,`created_at`,`admin_id`) VALUES ('Category 2','2022-09-06 11:58:25.479',1)
+[GIN] 2022/09/06 - 11:58:25 | 201 |   12.590292ms |             ::1 | POST     "/api/v1/categories"
+
+2022/09/06 11:58:29 /home/sheinko/Documents/GoLang/gin-crud/services/category_service.go:27
+[17.394ms] [rows:1] INSERT INTO `categories` (`name`,`created_at`,`admin_id`) VALUES ('Category 1','2022-09-06 11:58:29.54',1)
+[GIN] 2022/09/06 - 11:58:29 | 201 |   17.881127ms |             ::1 | POST     "/api/v1/categories"
+
+2022/09/06 11:58:35 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:10
+[0.476ms] [rows:1] SELECT * FROM `authors` WHERE id = 2
+
+2022/09/06 11:58:35 /home/sheinko/Documents/GoLang/gin-crud/services/category_service.go:10
+[0.248ms] [rows:1] SELECT * FROM `categories` WHERE id = 1
+
+2022/09/06 11:58:35 /home/sheinko/Documents/GoLang/gin-crud/services/book_service.go:22
+[22.518ms] [rows:1] INSERT INTO `books` (`title`,`description`,`author_id`,`admin_id`,`category_id`,`created_at`) VALUES ('Lorem 2','Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, recusandae, dicta aliquid incidunt fugiat saepe repudiandae corrupti, ratione officiis fuga inventore repellendus quae consequuntur? Vel eligendi sed beatae explicabo quae?',2,1,1,'2022-09-06 11:58:35.865')
+[GIN] 2022/09/06 - 11:58:35 | 201 |   23.603337ms |             ::1 | POST     "/api/v1/books"
+
+2022/09/06 11:58:42 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:10
+[0.829ms] [rows:1] SELECT * FROM `authors` WHERE id = 1
+
+2022/09/06 11:58:42 /home/sheinko/Documents/GoLang/gin-crud/services/category_service.go:10
+[0.256ms] [rows:1] SELECT * FROM `categories` WHERE id = 2
+
+2022/09/06 11:58:42 /home/sheinko/Documents/GoLang/gin-crud/services/book_service.go:22
+[13.082ms] [rows:1] INSERT INTO `books` (`title`,`description`,`author_id`,`admin_id`,`category_id`,`created_at`) VALUES ('Lorem 1','Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, recusandae, dicta aliquid incidunt fugiat saepe repudiandae corrupti, ratione officiis fuga inventore repellendus quae consequuntur? Vel eligendi sed beatae explicabo quae?',1,1,2,'2022-09-06 11:58:42.266')
+[GIN] 2022/09/06 - 11:58:42 | 201 |   14.550703ms |             ::1 | POST     "/api/v1/books"
+
+2022/09/06 11:58:49 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:19
+[0.241ms] [rows:1] SELECT * FROM `books` WHERE `books`.`author_id` = 1
+
+2022/09/06 11:58:49 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:19
+[1.183ms] [rows:1] SELECT * FROM `authors` WHERE `authors`.`id` = 1 ORDER BY `authors`.`id` LIMIT 1
+[GIN] 2022/09/06 - 11:58:49 | 200 |    1.281256ms |             ::1 | GET      "/api/v1/author/1"
+
+2022/09/06 11:58:55 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:35
+[18.849ms] [rows:1] DELETE FROM `authors` WHERE id = 1
+[GIN] 2022/09/06 - 11:58:55 | 204 |   19.337878ms |             ::1 | DELETE   "/api/v1/author/1"
+
+2022/09/06 11:59:01 /home/sheinko/Documents/GoLang/gin-crud/services/category_service.go:15
+[0.325ms] [rows:2] SELECT * FROM `categories`
+[GIN] 2022/09/06 - 11:59:01 | 200 |     427.383µs |             ::1 | GET      "/api/v1/categories"
+
+2022/09/06 11:59:05 /home/sheinko/Documents/GoLang/gin-crud/services/book_service.go:10
+[0.263ms] [rows:1] SELECT * FROM `books`
+[GIN] 2022/09/06 - 11:59:05 | 200 |     350.139µs |             ::1 | GET      "/api/v1/books"
+
+2022/09/06 11:59:14 /home/sheinko/Documents/GoLang/gin-crud/services/category_service.go:19
+[0.249ms] [rows:1] SELECT * FROM `books` WHERE `books`.`category_id` = 1
+
+2022/09/06 11:59:14 /home/sheinko/Documents/GoLang/gin-crud/services/category_service.go:19
+[1.227ms] [rows:1] SELECT * FROM `categories` WHERE `categories`.`id` = 1 ORDER BY `categories`.`id` LIMIT 1
+[GIN] 2022/09/06 - 11:59:14 | 200 |     1.29825ms |             ::1 | GET      "/api/v1/category/1"
+
+2022/09/06 11:59:22 /home/sheinko/Documents/GoLang/gin-crud/services/category_service.go:36
+[22.041ms] [rows:1] DELETE FROM `categories` WHERE id = 1
+[GIN] 2022/09/06 - 11:59:22 | 204 |    22.20085ms |             ::1 | DELETE   "/api/v1/category/1"
+
+2022/09/06 11:59:27 /home/sheinko/Documents/GoLang/gin-crud/services/book_service.go:10
+[0.259ms] [rows:0] SELECT * FROM `books`
+[GIN] 2022/09/06 - 11:59:27 | 200 |     673.155µs |             ::1 | GET      "/api/v1/books"
+
+2022/09/06 11:59:32 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:15
+[0.272ms] [rows:1] SELECT * FROM `authors`
+[GIN] 2022/09/06 - 11:59:32 | 200 |     348.157µs |             ::1 | GET      "/api/v1/authors"
+
+2022/09/06 11:59:35 /home/sheinko/Documents/GoLang/gin-crud/services/category_service.go:15
+[0.254ms] [rows:1] SELECT * FROM `categories`
+[GIN] 2022/09/06 - 11:59:35 | 200 |     614.113µs |             ::1 | GET      "/api/v1/categories"
+
+2022/09/06 11:59:46 /home/sheinko/Documents/GoLang/gin-crud/services/author_service.go:10
+[0.459ms] [rows:1] SELECT * FROM `authors` WHERE id = 2
+
+2022/09/06 11:59:46 /home/sheinko/Documents/GoLang/gin-crud/services/category_service.go:10
+[0.175ms] [rows:1] SELECT * FROM `categories` WHERE id = 2
+
+2022/09/06 11:59:46 /home/sheinko/Documents/GoLang/gin-crud/services/book_service.go:22
+[11.749ms] [rows:1] INSERT INTO `books` (`title`,`description`,`author_id`,`admin_id`,`category_id`,`created_at`) VALUES ('Lorem','Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum, recusandae, dicta aliquid incidunt fugiat saepe repudiandae corrupti, ratione officiis fuga inventore repellendus quae consequuntur? Vel eligendi sed beatae explicabo quae?',2,1,2,'2022-09-06 11:59:46.516')
+[GIN] 2022/09/06 - 11:59:46 | 201 |   12.727707ms |             ::1 | POST     "/api/v1/books"
+
+2022/09/06 11:59:49 /home/sheinko/Documents/GoLang/gin-crud/services/book_service.go:10
+[0.301ms] [rows:1] SELECT * FROM `books`
+[GIN] 2022/09/06 - 11:59:49 | 200 |     398.387µs |             ::1 | GET      "/api/v1/books"
+
+2022/09/06 11:59:56 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:12
+[0.579ms] [rows:0] SELECT * FROM `b_and_rs` WHERE user_id=1 AND (status = 1 or status = 2)
+
+2022/09/06 11:59:56 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:27
+[16.641ms] [rows:1] INSERT INTO `b_and_rs` (`user_id`,`admin_id`,`book_id`,`status`,`borrow_date`,`return_date`,`created_at`) VALUES (1,NULL,3,1,'','','2022-09-06 11:59:56.438')
+[GIN] 2022/09/06 - 11:59:56 | 202 |   17.632076ms |             ::1 | GET      "/api/v1/book/3/borrow"
+
+2022/09/06 12:00:02 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:19
+[0.477ms] [rows:1] SELECT * FROM `books` WHERE `books`.`id` = 3
+
+2022/09/06 12:00:02 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:19
+[0.215ms] [rows:1] SELECT `id`,`username`,`email` FROM `users` WHERE `users`.`id` = 1
+
+2022/09/06 12:00:02 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:19
+[1.663ms] [rows:1] SELECT * FROM `b_and_rs`
+[GIN] 2022/09/06 - 12:00:02 | 200 |    1.967034ms |             ::1 | GET      "/api/v1/borrow-return-list/all"
+
+2022/09/06 12:00:08 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:35 Error 1216: Cannot add or update a child row: a foreign key constraint fails
+[6.506ms] [rows:0] UPDATE `b_and_rs` SET `admin_id`=2,`status`=2,`borrow_date`='2022-09-06 12:00:08',`created_at`='2022-09-06 12:00:08.809' WHERE status = 1 and id = 1
+[GIN] 2022/09/06 - 12:00:08 | 404 |    6.741233ms |             ::1 | GET      "/api/v1/borrow/1/allow"
+
+2022/09/06 12:00:20 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:35
+[1.113ms] [rows:0] UPDATE `b_and_rs` SET `admin_id`=2,`status`=2,`borrow_date`='2022-09-06 12:00:20',`created_at`='2022-09-06 12:00:20.417' WHERE status = 1 and id = 3
+[GIN] 2022/09/06 - 12:00:20 | 202 |       1.422ms |             ::1 | GET      "/api/v1/borrow/3/allow"
+
+2022/09/06 12:00:35 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:19
+[0.438ms] [rows:1] SELECT * FROM `books` WHERE `books`.`id` = 3
+
+2022/09/06 12:00:35 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:19
+[0.307ms] [rows:1] SELECT `id`,`username`,`email` FROM `users` WHERE `users`.`id` = 1
+
+2022/09/06 12:00:35 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:19
+[2.279ms] [rows:1] SELECT * FROM `b_and_rs`
+[GIN] 2022/09/06 - 12:00:35 | 200 |     2.54214ms |             ::1 | GET      "/api/v1/borrow-return-list/all"
+
+2022/09/06 12:00:49 /home/sheinko/Documents/GoLang/gin-crud/services/book_service.go:31
+[13.756ms] [rows:1] DELETE FROM `books` WHERE id = 3
+[GIN] 2022/09/06 - 12:00:49 | 204 |     13.9142ms |             ::1 | DELETE   "/api/v1/book/3"
+
+2022/09/06 12:00:53 /home/sheinko/Documents/GoLang/gin-crud/services/borrow_and_return_service.go:19
+[0.588ms] [rows:0] SELECT * FROM `b_and_rs`
+[GIN] 2022/09/06 - 12:00:53 | 200 |     851.233µs |             ::1 | GET      "/api/v1/borrow-return-list/all"
